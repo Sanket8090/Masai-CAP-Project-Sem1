@@ -1,26 +1,27 @@
 from pytube import YouTube
 import instaloader
-def instagram():
+def instagram(db):
     ig=instaloader.Instaloader()
-    db=input("Enter the instagram id:")
+    
     ig.download_profile(db,profile_pic_only=True)
 
 
 
 def Download(link):
     youtubeObject=YouTube(link)
-    youtubeOBJECT=youtubeObject.streams.get_highest_resolution()
+    stream = youtubeObject.streams.get_highest_resolution()
     try:
-        youtubeObject.download()
+        stream.download()
     except:
         print("An error has occurred")
     print("Download is completed succesfully")
-link= input("https://instagram.com/virat.kohli")
+link= input("Enter Link: ")
 Download(link)
 
-choose=("Enter 1 for instagram operators and 2 for youtube :")
+choose=input("Enter 1 for instagram operators and 2 for youtube :")
 if choose=="1":
-    instagram()
+    db=input("Enter the instagram id:")
+    instagram(db)
 else:
-    link= input ("https://youtu.be/T2wCuBre0oU")
+    link= input ("Enter Link")
     Download(link)
